@@ -3,6 +3,9 @@ Button homeButton;
 Player player;
 
 int bulletNum = 5;
+int curScore = 0;
+int highScore = 0;
+
 Bullet[] bulletArray = new Bullet[bulletNum]; 
 
 float distance;
@@ -19,10 +22,10 @@ void setup(){
  background(255);
  startButton = new Button(200,240,100,50,#ff004d,#ffa300);
  player = new Player(5,10);
-  for (int i = 0; i<bulletNum; i++){
+  for (int i = 0; i<bulletArray.length; i++){
     bulletArray[i] = new Bullet();
   }
- titleScreen = loadImage("titleScreen.png");
+ titleScreen = loadImage("titleScreen2.png");
  gameScreen = loadImage("gameScreen.gif");
  deathScreen = loadImage("deathScreen.png");
 }
@@ -35,10 +38,13 @@ void draw(){
     image(gameScreen, 0, 0,400,400);
     player.show();
     player.move();
-    for (int i = 0; i<bulletNum; i++){  
+    for (int i = 0; i<bulletArray.length; i++){  
       bulletArray[i].show();
       bulletArray[i].move();
     }
+    fill(255);
+    textSize(20);
+    text("Score: "+curScore,20,20);
   } else if (gamestate == 2){
     image(deathScreen, 0, 0,400,400);
   }
@@ -49,6 +55,7 @@ void mousePressed(){
     gamestate = 1;
   }
   print(mouseX+","+mouseY+",");
+  println(bulletArray.length);
 }
 
 void keyPressed(){
