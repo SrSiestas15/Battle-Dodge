@@ -1,9 +1,12 @@
 Button startButton;
 Button homeButton;
-Bullet bullet;
 Player player;
 
+int bulletNum = 5;
+Bullet[] bulletArray = new Bullet[bulletNum]; 
+
 float distance;
+
 
 PImage titleScreen;
 PImage gameScreen;
@@ -16,7 +19,9 @@ void setup(){
  background(255);
  startButton = new Button(200,240,100,50,#ff004d,#ffa300);
  player = new Player(5,10);
- bullet = new Bullet();
+  for (int i = 0; i<bulletNum; i++){
+    bulletArray[i] = new Bullet();
+  }
  titleScreen = loadImage("titleScreen.png");
  gameScreen = loadImage("gameScreen.gif");
  deathScreen = loadImage("deathScreen.png");
@@ -30,9 +35,10 @@ void draw(){
     image(gameScreen, 0, 0,400,400);
     player.show();
     player.move();
-    bullet.show();
-    bullet.move();
-    checkHit();
+    for (int i = 0; i<bulletNum; i++){  
+      bulletArray[i].show();
+      bulletArray[i].move();
+    }
   } else if (gamestate == 2){
     image(deathScreen, 0, 0,400,400);
   }
@@ -73,13 +79,5 @@ void keyReleased(){
   }
   if(key == 'd') {
     player.goRight = false;
-  }
-}
-
-void checkHit(){
-  float distance = dist(player.position.x, player.position.y, bullet.position.x, bullet.position.y);
-  if (distance < 15){
-    gamestate = 0;
-    bullet.position.x = 400;
   }
 }

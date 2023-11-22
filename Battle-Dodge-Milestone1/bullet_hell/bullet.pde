@@ -26,23 +26,23 @@ class Bullet{
      if (side == 1){
       position.x = 10;
       position.y = random(142,385);
-      speedX = random(1,6);
-      speedY = random(-6,6);
+      speedX = random(1,4);
+      speedY = random(-4,4);
      } else if (side == 2){
       position.x = random(10,390);
       position.y = 142;
-      speedX = random(-6,6);
-      speedY = random(1,6);
+      speedX = random(-4,4);
+      speedY = random(1,4);
      } else if (side == 3){
       position.x = 390;
       position.y = random(142,385);
-      speedX = random(-6,-1);
-      speedY = random(-6,6);
+      speedX = random(-4,-1);
+      speedY = random(-4,4);
      } else if (side == 4){
       position.x = random(10,390);
       position.y = 385;
-      speedX = random(-6,6);
-      speedY = random(-6,-1);
+      speedX = random(-4,4);
+      speedY = random(-4,-1);
      }
    }
   }

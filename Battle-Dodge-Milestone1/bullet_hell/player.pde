@@ -17,6 +17,15 @@ class Player{
   void show(){
     fill(255);
     circle(position.x, position.y, size);
+  for (int i = 0; i<bulletNum; i++){
+    if (dist(position.x, position.y, bulletArray[i].position.x, bulletArray[i].position.y)
+   < 15){
+      gamestate = 0;
+      bulletArray[i].position.x = 400;
+      player.position.x = 201;
+      player.position.y = 263;
+    }
+  }
   }
   
   //if a key is currently down, change the player's position
