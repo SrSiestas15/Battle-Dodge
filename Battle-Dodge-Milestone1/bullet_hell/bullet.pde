@@ -4,6 +4,8 @@ class Bullet{
   PVector position; //bullet position
   int side = 0;
   int reset = 0;
+  int min = -2;
+  int max = 2;
   
   Bullet(){
     position = new PVector(width/2, height/2);
@@ -26,23 +28,23 @@ class Bullet{
      if (side == 1){
       position.x = 10;
       position.y = random(142,385);
-      speedX = random(1,4);
-      speedY = random(-4,4);
+      speedX = random(1,max);
+      speedY = random(-max,max);
      } else if (side == 2){
       position.x = random(10,390);
       position.y = 142;
-      speedX = random(-4,4);
-      speedY = random(1,4);
+      speedX = random(-max,max);
+      speedY = random(1,max);
      } else if (side == 3){
       position.x = 390;
       position.y = random(142,385);
-      speedX = random(-4,-1);
-      speedY = random(-4,4);
+      speedX = random(-max,-1);
+      speedY = random(-max,max);
      } else if (side == 4){
       position.x = random(10,390);
       position.y = 385;
-      speedX = random(-4,4);
-      speedY = random(-4,-1);
+      speedX = random(-max,max);
+      speedY = random(-max,-1);
      }
    }
   }
