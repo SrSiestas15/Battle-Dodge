@@ -18,8 +18,7 @@ class Player{
     fill(255);
     circle(position.x, position.y, size);
   for (int i = 0; i<bulletArray.length; i++){
-    if (dist(position.x, position.y, bulletArray[i].position.x, bulletArray[i].position.y)
-   < 15){
+    if (dist(position.x, position.y, bulletArray[i].position.x, bulletArray[i].position.y)< 15){
       gamestate = 2;
       bulletArray[i].position.x = 400;
       player.position.x = 201;

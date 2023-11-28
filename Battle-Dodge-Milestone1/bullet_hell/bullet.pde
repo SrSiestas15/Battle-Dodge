@@ -6,6 +6,7 @@ class Bullet{
   int reset = 0;
   int min = -2;
   int max = 2;
+  float newSpeed;
   
   Bullet(){
     position = new PVector(width/2, height/2);
@@ -29,23 +30,28 @@ class Bullet{
       position.x = 10;
       position.y = random(142,385);
       speedX = random(1,max);
-      speedY = random(-max,max);
+      speedY = randAny();
      } else if (side == 2){
       position.x = random(10,390);
       position.y = 142;
-      speedX = random(-max,max);
+      speedX = randAny();
       speedY = random(1,max);
      } else if (side == 3){
       position.x = 390;
       position.y = random(142,385);
       speedX = random(-max,-1);
-      speedY = random(-max,max);
+      speedY = randAny();
      } else if (side == 4){
       position.x = random(10,390);
       position.y = 385;
-      speedX = random(-max,max);
+      speedX = randAny();
       speedY = random(-max,-1);
      }
    }
+  }
+  
+  float randAny(){
+   newSpeed = random(-max,max);
+   return newSpeed;
   }
 }
