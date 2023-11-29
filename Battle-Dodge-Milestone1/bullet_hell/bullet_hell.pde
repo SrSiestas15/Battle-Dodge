@@ -28,7 +28,7 @@ void setup(){
   }
  titleScreen = loadImage("titleScreen2.png");
  gameScreen = loadImage("gameScreen.gif");
- deathScreen = loadImage("deathScreen.png");
+ deathScreen = loadImage("deathScreen1.png");
 }
 
 void draw(){
