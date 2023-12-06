@@ -17,10 +17,11 @@ class Player{
   void show(){
     fill(255);
     circle(position.x, position.y, size);
-  for (int i = 0; i<bulletArray.length; i++){
-    if (dist(position.x, position.y, bulletArray[i].position.x, bulletArray[i].position.y)< 15){
+  for (int i = 0; i<bulletArray.size(); i++){
+    Bullet curBul = bulletArray.get(i);
+    if (dist(position.x, position.y, curBul.position.x, curBul.position.y)< 15){
       gamestate = 2;
-      bulletArray[i].position.x = 400;
+      curBul.position.x = 400;
       player.position.x = 201;
       player.position.y = 263;
     }
