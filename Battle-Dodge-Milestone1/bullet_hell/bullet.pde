@@ -9,8 +9,7 @@ class Bullet{
   float newSpeed;
   
   Bullet(){
-    position = new PVector(width/2, height/2);
-    position.x = 400;
+    position = new PVector(random(390,400), random(390,400));
   }
   
   //draw a square at the player's position

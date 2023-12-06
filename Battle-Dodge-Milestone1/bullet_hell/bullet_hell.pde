@@ -1,17 +1,22 @@
 Button startButton;
+Button tryButton;
 Button homeButton;
+
 Player player;
+PFont gothic;
 
 int bulletNum = 5;
 int curScore = 0;
 int highScore = 0;
+
+color glow;
 
 ArrayList<Bullet> bulletArray = new ArrayList<Bullet>();
 
 //Bullet[] bulletArray = new Bullet[bulletNum]; 
 
 float distance;
-
+boolean dead = false;
 
 PImage titleScreen;
 PImage gameScreen;
@@ -22,8 +27,10 @@ int gamestate = 0;
 void setup(){ 
  size(400,400);
  background(255);
- startButton = new Button(200,240,100,50,#ff004d,#ffa300);
- homeButton = new Button(100,340,100,50,#7E2553,#FF004D);
+ gothic = createFont("gothicFont.ttf",10);
+ startButton = new Button(200,240,100,50,#ff004d,#ffa300, "Start");
+ tryButton = new Button(100,340,155,50,#7E2553,#FF004D, "Try Again");
+ homeButton = new Button(300,340,155,50,#7E2553,#FF004D, "Home");
  player = new Player(5,10);
   for (int i = 0; i<6; i++){
     bulletArray.add(new Bullet());
@@ -39,28 +46,35 @@ void draw(){
       image(titleScreen, 0, 0,400,400);
       startButton.show();
       break;
-    case 1:
-      if (frameCount == 60){
-        curScore += 1;
-        frameCount = 0;
-      }
-      image(gameScreen, 0, 0,400,400);
-      player.show();
-      player.move();
-      for (int i = 0; i<bulletArray.size(); i++){
+    case 2:
+      image(deathScreen, 0, 0,400,400);
+      textAlign(CENTER);
+      text("Score " +curScore,120,220);
+      text("High Score " + highScore,120,250);
+      tryButton.show();
+      homeButton.show();
+      break;
+  }
+  
+   while(gamestate == 1){
+     image(gameScreen, 0, 0,400,400); 
+     for (int i = 0; i<bulletArray.size(); i++){
         Bullet curBul = bulletArray.get(i);
         curBul.show();
         curBul.move();
       }
+      if (frameCount == 60){
+        curScore += 1;
+        frameCount = 0;
+      }
+      player.show();
+      player.move();
       fill(255);
       textSize(20);
-      text("Score: "+curScore,20,20);
+      textAlign(LEFT);
+      text("Score "+curScore,20,30);
       break;
-    case 2:
-      image(deathScreen, 0, 0,400,400);
-      homeButton.show();
-      break;
-  }
+   }
 }
 
 void mousePressed(){
@@ -69,16 +83,23 @@ void mousePressed(){
   }
   if (startButton.mouseOver == 1 && gamestate == 0){
     println("to main game");
+    dead = false;
+    curScore = 0;
     frameCount = 0;
     gamestate = 1;
     if (curScore > highScore){
       highScore = curScore;
     }
-    curScore = 0;
   }
   if (homeButton.mouseOver == 1 && gamestate == 2){
     println("back to home menu");
     gamestate = 0;
+  } if (tryButton.mouseOver == 1 && gamestate == 2){
+    println("replay");
+    dead = false;
+    frameCount = 0;
+    curScore = 0;
+    gamestate = 1;
   }
   print(mouseX+","+mouseY+",");
 }

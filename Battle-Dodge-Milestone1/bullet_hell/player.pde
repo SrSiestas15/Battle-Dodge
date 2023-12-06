@@ -19,11 +19,16 @@ class Player{
     circle(position.x, position.y, size);
   for (int i = 0; i<bulletArray.size(); i++){
     Bullet curBul = bulletArray.get(i);
+    
     if (dist(position.x, position.y, curBul.position.x, curBul.position.y)< 15){
       gamestate = 2;
+      position.x = 200;
+      position.y = 260;
       curBul.position.x = 400;
-      player.position.x = 201;
-      player.position.y = 263;
+      if (curScore>highScore){
+       highScore = curScore; 
+      }
+      
     }
   }
   }
