@@ -4,10 +4,12 @@ Button homeButton;
 
 Player player;
 PFont gothic;
+PFont pixelFont;
 
 int bulletNum = 5;
 int curScore = 0;
 int highScore = 0;
+int level = 0;
 
 color glow;
 
@@ -28,6 +30,7 @@ void setup(){
  size(400,400);
  background(255);
  gothic = createFont("gothicFont.ttf",10);
+ pixelFont = createFont("Minecraft.ttf",10);
  startButton = new Button(200,240,100,50,#ff004d,#ffa300, "Start");
  tryButton = new Button(100,340,155,50,#7E2553,#FF004D, "Try Again");
  homeButton = new Button(300,340,155,50,#7E2553,#FF004D, "Home");
@@ -69,6 +72,7 @@ void draw(){
       }
       player.show();
       player.move();
+      monText();
       fill(255);
       textSize(20);
       textAlign(LEFT);
@@ -80,6 +84,7 @@ void draw(){
 void mousePressed(){
   if (gamestate == 1){
     bulletArray.add(new Bullet()); //adds a new bullet when clicking during main game (for bugtesting)
+    speedUp(player); //speeds up player (for bugtesting)
   }
   if (startButton.mouseOver == 1 && gamestate == 0){
     println("to main game");
@@ -133,4 +138,26 @@ void keyReleased(){
   if(key == 'd') {
     player.goRight = false;
   }
+}
+
+void monText(){
+  textAlign(LEFT,TOP);
+  textFont(pixelFont);
+  textSize(17);
+  fill(0);
+  checkLevel(curScore);
+  text("Hello",294,13);
+  text("there...",294,33);
+  text("You are on",294,53);
+  text("level "+ level+"!",294,73);
+  
+}
+
+void checkLevel(int i){ //pass by copy
+  i /= 10;
+  level = i;
+}
+
+void speedUp(Player pl){ //pass by reference
+  pl.speed += 20;
 }
