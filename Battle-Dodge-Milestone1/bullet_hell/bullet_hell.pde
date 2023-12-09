@@ -48,14 +48,17 @@ void draw(){
     case 0:
       image(titleScreen, 0, 0,400,400);
       startButton.show();
+      shine1();
       break;
     case 2:
       image(deathScreen, 0, 0,400,400);
       textAlign(CENTER);
+      fill(255);
       text("Score " +curScore,120,220);
       text("High Score " + highScore,120,250);
       tryButton.show();
       homeButton.show();
+      shine2();
       break;
   }
   
@@ -150,7 +153,24 @@ void monText(){
   text("there...",294,33);
   text("You are on",294,53);
   text("level "+ level+"!",294,73);
-  
+  text("Try going",294,90);
+  text("for 10...",294,110);
+}
+
+void shine1(){
+  fill(#FFE75D,50);
+  circle(20,220,sin(frameCount/8)+20);
+  circle(64,170,sin(frameCount/8)+20);
+  circle(342,167,cos(frameCount/8)+20);
+  circle(354,266,sin(frameCount/8)+20);
+  circle(376,21,cos(frameCount/8)+20);
+}
+
+void shine2(){
+  fill(#FFE75D,50);
+  circle(193,195,sin(frameCount/8)+20);
+  circle(67,196,sin(frameCount/8)+20);
+  circle(309,129,cos(frameCount/8)+20);
 }
 
 void checkLevel(int i){ //pass by copy
