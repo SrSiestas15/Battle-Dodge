@@ -20,8 +20,8 @@ class Player{
   for (int i = 0; i<bulletArray.size(); i++){
     Bullet curBul = bulletArray.get(i);
     
-    if (dist(position.x, position.y, curBul.position.x, curBul.position.y)< 15){
-      gamestate = 2;
+    if (dist(position.x, position.y, curBul.position.x, curBul.position.y)< 15){ //SKILL 6 - dist() //SKILL 40 - Find the direction and distance between two points
+      gamestate[0] = 2;
       position.x = 200;
       position.y = 260;
       curBul.position.x = 400;

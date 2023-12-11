@@ -1,15 +1,15 @@
 class Bullet{
   float speedX = random(2,6); //speed the position will move at based on keyboard input
   float speedY = random(2,6); //speed the position will move at based on keyboard input
-  PVector position; //bullet position
+  PVector position; //bullet position //SKILL 38 - Use PVector class
   int side = 0;
   int reset = 0;
   int min = -2;
   int max = 2;
   float newSpeed;
   
-  Bullet(){
-    position = new PVector(random(390,400), random(390,400));
+  Bullet(){ //SKILL 28 - constructor function
+    position = new PVector(random(390,400), random(390,400)); //SKILL 39 - Basic position with vector //SKILL 41 - random 2D vector
   }
   
   //draw a square at the player's position
@@ -49,7 +49,7 @@ class Bullet{
    }
   }
   
-  float randAny(){
+  float randAny(){ //SKILL 21 - Declare & call a function with a return type
    newSpeed = random(-max,max);
    return newSpeed;
   }
