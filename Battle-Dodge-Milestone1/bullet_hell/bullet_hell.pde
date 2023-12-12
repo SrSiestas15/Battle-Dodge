@@ -1,3 +1,10 @@
+/* Object Oriented Game 
+ --Battle Dodge--
+ By James Munoz Sevillano
+ survive agaisnt the onslaught of bullets
+ 
+ some of the code was ellaborated upon from the object-oriented toy project */
+
 Button startButton;
 Button tryButton;
 Button homeButton;
@@ -136,7 +143,7 @@ void keyPressed(){
   }
 }
 
-//if a key is released, set the booleans correctly
+//if a key is released, set the variables correctly
 void keyReleased(){
   if(key == 'w') {
     player.moveUp = false;
