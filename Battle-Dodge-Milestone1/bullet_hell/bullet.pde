@@ -2,29 +2,26 @@ class Bullet{
   float speedX = random(2,6); //speed the position will move at based on keyboard input
   float speedY = random(2,6); //speed the position will move at based on keyboard input
   PVector position; //bullet position //SKILL 38 - Use PVector class
-  int side = 0;
-  int reset = 0;
-  int min = -2;
-  int max = 2;
+  int side = 0; //which side of game area the bullet will come from
+  int min = -2; //fastest negative speed
+  int max = 2; //fastest positive speed
   float newSpeed;
   
   Bullet(){ //SKILL 28 - constructor function
     position = new PVector(random(390,400), random(390,400)); //SKILL 39 - Basic position with vector //SKILL 41 - random 2D vector
   }
   
-  //draw a square at the player's position
+  //draw a circle at the bullet's position
   void show(){
     fill(#FFEC27);
     circle(position.x, position.y, 10);
   }
   
-  //if a key is currently down, change the player's position
   void move(){
    position.x += speedX;
    position.y += speedY;
-   
-   if (position.x > 390 || position.x < 10 || position.y > 385 || position.y < 142){
-     side = int(random(1,5));
+   if (position.x > 390 || position.x < 10 || position.y > 385 || position.y < 142){ //resets bullet position if enters off-game area
+     side = int(random(1,5)); //randomizes what side the bullet will come from and randomizes X and Y speed appropriately
      if (side == 1){
       position.x = 10;
       position.y = random(142,385);

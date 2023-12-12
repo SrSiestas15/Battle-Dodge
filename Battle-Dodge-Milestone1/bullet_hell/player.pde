@@ -1,54 +1,50 @@
 class Player{
-  boolean goUp; //is the up key currently being pressed?
-  boolean goDown; //is the down key currently being pressed?
-  boolean goLeft; //is the left key currently being pressed?
-  boolean goRight; //is the right key currently being pressed?
-  float speed; //speed the position will move at based on keyboard input
-  float size;
+  boolean moveUp;
+  boolean moveDown;
+  boolean moveLeft;
+  boolean moveRight;
+  float speed; //player speed
+  float size; //player size
   PVector position; //player position
   
   Player(float sp, float sz){
     speed = sp;
     size = sz;
-    position = new PVector(width/2, height/2);
+    position = new PVector(width/2, height/2); //starts player sprite at middle of screen
   }
   
-  //draw a square at the player's position
   void show(){
-    fill(255);
-    circle(position.x, position.y, size);
-  for (int i = 0; i<bulletArray.size(); i++){
-    Bullet curBul = bulletArray.get(i);
-    
-    if (dist(position.x, position.y, curBul.position.x, curBul.position.y)< 15){ //SKILL 6 - dist() //SKILL 40 - Find the direction and distance between two points
-      gamestate[0] = 2;
-      position.x = 200;
-      position.y = 260;
-      curBul.position.x = 400;
-      if (curScore>highScore){
-       highScore = curScore; 
-      }
+      fill(255);
+      circle(position.x, position.y, size);
+    for (int i = 0; i<bulletArray.size(); i++){ //detects bullet collision
+      Bullet curBul = bulletArray.get(i);
       
+      if (dist(position.x, position.y, curBul.position.x, curBul.position.y)< 15){ //SKILL 6 - dist() //SKILL 40 - Find the direction and distance between two points
+        gamestate[0] = 2;
+        position.x = 200;
+        position.y = 260;
+        curBul.position.x = 400;
+        if (curScore>highScore){ //manages current score (if the current score is higher than high score, replaces it)
+         highScore = curScore; 
+        }
+      }
     }
   }
-  }
   
-  //if a key is currently down, change the player's position
-  void move(){
-    
-    if(goUp == true){
+  void move(){ //move player sprite
+    if(moveUp == true){
       position.y -= speed;
     }
-    if(goDown == true){
+    if(moveDown == true){
       position.y = position.y + speed;
     }
-    if(goLeft == true){
+    if(moveLeft == true){
       position.x = position.x - speed;
     }
-    if(goRight == true){
+    if(moveRight == true){
       position.x = position.x + speed;
     }
-    position.y = constrain(position.y, 142+size, 390-size);
+    position.y = constrain(position.y, 142+size, 390-size); //keeps player srite in playable area
     position.x = constrain(position.x, 10+size, 390-size);
   }
 }

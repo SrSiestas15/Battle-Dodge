@@ -17,8 +17,6 @@ color glow;
 ArrayList<Bullet> bulletArray = new ArrayList<Bullet>(); //SKILL 34 - Initialize arrayList
 int[] gamestate = new int[1]; //SKILL 33 - initalize array
 
-//Bullet[] bulletArray = new Bullet[bulletNum]; 
-
 float distance;
 boolean dead = false;
 
@@ -49,12 +47,12 @@ void setup(){ //SKILL 4 - setup()
 
 void draw(){
   switch (gamestate[0]){ //SKILL 15 - switch statement
-    case 0:
+    case 0: //main menu screen
       image(titleScreen, 0, 0,400,400);
       startButton.show();
       shine1();
       break; //SKILL 18 - break
-    case 2:
+    case 2: //game over screen
       image(deathScreen, 0, 0,400,400);
       textAlign(CENTER);
       fill(255); //SKILL 2 - fill()
@@ -64,11 +62,11 @@ void draw(){
       homeButton.show();
       shine2();
       break;
-    case 3:
+    case 3: //victory screen
       image(winScreen, 0, 0,400,400);
   }
   
-   while(gamestate[0] == 1){
+   while(gamestate[0] == 1){ //main gameplay loop
      image(gameScreen, 0, 0,400,400); 
      for (int i = 0; i<bulletArray.size(); i++){ //SKILL 9 - local variable (i) //SKILL 17 - nested loop //SKILL 36 -  Use an ArrayList method: size()
         Bullet curBul = bulletArray.get(i);
@@ -122,38 +120,39 @@ void mousePressed(){ //SKILL 7 - mousePressed()
   print(mouseX+","+mouseY+",");
 }
 
+//player movement
 void keyPressed(){
   if(key == 'w') {
-    player.goUp = true;
+    player.moveUp = true;
   }
   if(key == 's') {
-    player.goDown = true;
+    player.moveDown = true;
   }
   if(key == 'a') {
-    player.goLeft = true;
+    player.moveLeft = true;
   }
   if(key == 'd') {
-    player.goRight = true;
+    player.moveRight = true;
   }
 }
 
 //if a key is released, set the booleans correctly
 void keyReleased(){
   if(key == 'w') {
-    player.goUp = false;
+    player.moveUp = false;
   }
   if(key == 's') {
-    player.goDown = false;
+    player.moveDown = false;
   }
   if(key == 'a') {
-    player.goLeft = false;
+    player.moveLeft = false;
   }
   if(key == 'd') {
-    player.goRight = false;
+    player.moveRight = false;
   }
 }
 
-void monText(){
+void monText(){ //displays and changes the text said by monster
   for (int i = 0; i<bulletArray.size(); i++){
         Bullet curBul = bulletArray.get(i);
         curBul.max = 2;
@@ -204,6 +203,7 @@ void monText(){
   }
 }
 
+//stars shining in title screen
 void shine1(){ //SKILL 20 - Declare & call a function with no parameters and no return type
   fill(#FFE75D,50);
   circle(20,220,sin(frameCount/8)+20);
@@ -213,6 +213,7 @@ void shine1(){ //SKILL 20 - Declare & call a function with no parameters and no 
   circle(376,21,cos(frameCount/8)+20);
 }
 
+//stars shining in game over screen
 void shine2(){
   fill(#FFE75D,50);
   circle(193,195,sin(frameCount/8)+20);
